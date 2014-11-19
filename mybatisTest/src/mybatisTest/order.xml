@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	<resultMap type="Automobile" id="automobileResult">
+		<result column="id" property="id" />
+		<result column="make" property="make" />
+		<result column="model" property="model" />
+		<result column="model_year" property="year" />
+	</resultMap>
+	<select id="select" parameterType="int" resultType="Automobile"
+		resultMap="automobileResult">
+		select * from
+		automobiles where id = #{id}
+    </select>
+	<select id="select_all" resultType="Automobile"
+		resultMap="automobileResult">
+		select * from
+		automobiles
+    </select>
+	<insert id="insert" parameterType="Automobile">
+		insert into automobiles (id,
+		model, make, model_year)
+		values (#{id}, #{model}, #{make}, #{year})
+    </insert>
+	<delete id="delete" parameterType="int">
+		delete from automobiles where
+		id = #{id}
+  </delete>
+	<delete id="deleteAll">
+		delete from automobiles
+  </delete>
+</mapper>
